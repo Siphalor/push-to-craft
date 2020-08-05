@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "de.siphalor.pushtocraft.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinIngredient",
+    "MixinMinecraftServer",
+    "MixinRecipeManager",
+    "ReloadableResourceManagerImplAccessor"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

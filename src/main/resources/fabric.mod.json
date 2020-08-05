@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "pushtocraft",
+	"version": "${version}",
+	"name": "Push To Craft",
+	"description": "Push your new items and tags into existing recipes",
+	"authors": [
+		"Siphalor"
+	],
+	"contributors": [],
+	"contact": {},
+	"license": "CC-BY-NC-SA-4.0",
+	"icon": "assets/pushtocraft/icon.png",
+
+	"sources": "https://github.com/Siphalor/push-to-craft",
+	"sources": "https://github.com/Siphalor/push-to-craft/issues",
+
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"de.siphalor.pushtocraft.PushToCraft"
+		],
+		"client": [],
+		"server": []
+	},
+	"mixins": [
+		"pushtocraft.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.4.0",
+		"fabric": "*"
+	},
+	"custom": {
+		"modmenu:api": true,
+		"modsoftheworld:splashes": "pushtocraft:splashes.txt"
+	}
+}
