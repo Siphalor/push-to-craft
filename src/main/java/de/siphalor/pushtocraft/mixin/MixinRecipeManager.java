@@ -1,7 +1,7 @@
 package de.siphalor.pushtocraft.mixin;
 
 import com.google.gson.JsonObject;
-import de.siphalor.pushtocraft.PushToCraft;
+import de.siphalor.pushtocraft.Util;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.util.Identifier;
@@ -20,7 +20,7 @@ public class MixinRecipeManager {
 			locals = LocalCapture.CAPTURE_FAILHARD
 	)
 	private static void onDeserialize(Identifier recipeId, JsonObject json, CallbackInfoReturnable<Recipe<?>> callbackInfoReturnable, String serializerId) {
-		PushToCraft.currentRecipeSerializer = Registry.RECIPE_SERIALIZER.get(new Identifier(serializerId));
-		PushToCraft.currentRecipeId = recipeId;
+		Util.currentRecipeSerializer = Registry.RECIPE_SERIALIZER.get(new Identifier(serializerId));
+		Util.currentRecipeId = recipeId;
 	}
 }

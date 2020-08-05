@@ -44,7 +44,9 @@ public class PushToCraftManager extends JsonDataLoader {
 
 	@Override
 	protected void apply(Map<Identifier, JsonObject> resources, ResourceManager manager, Profiler profiler) {
-		resources.forEach((identifier, jsonObject) -> {
+		for (Map.Entry<Identifier, JsonObject> e : resources.entrySet()) {
+			Identifier identifier = e.getKey();
+			JsonObject jsonObject = e.getValue();
 			if (jsonObject.has("additions")) {
 				JsonElement element = jsonObject.get("additions");
 				if (element.isJsonArray()) {
@@ -77,7 +79,7 @@ public class PushToCraftManager extends JsonDataLoader {
 					}
 					if (targets == null || targets.isEmpty()) {
 						logError(identifier, "targets no items or tags");
-						return;
+						continue;
 					}
 
 					if (jsonObject.has("recipes")) {
@@ -104,11 +106,11 @@ public class PushToCraftManager extends JsonDataLoader {
 									}
 									if (recipeSerializers.isEmpty()) {
 										logError(identifier, "has empty or completely invalid recipe type specifier array");
-										return;
+										continue;
 									}
 								} else {
 									logError(identifier, "has recipe type specifier of invalid type " + element.getClass().getSimpleName() + " - should be an array");
-									return;
+									continue;
 								}
 							}
 
@@ -170,7 +172,7 @@ public class PushToCraftManager extends JsonDataLoader {
 			} else {
 				logError(identifier, "is missing additions list. Sorry but pushing nothing makes no sense O_O");
 			}
-		});
+		}
 	}
 
 	private void logError(Identifier identifier, String errorText) {
@@ -184,6 +186,7 @@ public class PushToCraftManager extends JsonDataLoader {
 	public Stream<Entry> getMatches(Identifier recipeId, RecipeSerializer<?> recipeSerializer) {
 		String recipeIdString = recipeId.toString();
 		String path = recipeId.getPath();
+		//noinspection UnstableApiUsage
 		return Streams.concat(
 				exactPushes.getOrDefault(recipeIdString, Collections.emptyList()).parallelStream(),
 				namespacePushes.getOrDefault(recipeId.getNamespace(), Collections.emptyList()).parallelStream().filter(pair -> pair.getLeft().matcher(path).matches()).map(Pair::getRight),
