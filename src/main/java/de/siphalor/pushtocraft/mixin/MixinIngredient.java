@@ -41,7 +41,7 @@ public class MixinIngredient {
 			HashMap<String, JsonObject> ids = new HashMap<>();
 			for (JsonElement ele : jsonElement.getAsJsonArray()) {
 				if (ele.isJsonObject()) {
-					JsonObject object = jsonElement.getAsJsonObject();
+					JsonObject object = ele.getAsJsonObject();
 					ids.put(extractId(object), object);
 				}
 			}
