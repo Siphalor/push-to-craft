@@ -21,11 +21,11 @@ dependencies {
 }
 
 processResources {
-	inputs.property "version", project.version
+	inputs.property "version", version
 
 	from(sourceSets.main.resources.srcDirs) {
 		include "fabric.mod.json"
-		expand "version": project.version
+		expand "version": version
 	}
 
 	from(sourceSets.main.resources.srcDirs) {
@@ -56,11 +56,9 @@ jar {
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
+			artifactId = "${project.archives_base_name}-${project.minecraft_major_version}"
 			// add all the jars that should be included when publishing to maven
 			artifact(jar) {
-				builtBy remapJar
-			}
-			artifact("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}.jar"){
 				builtBy remapJar
 			}
 			artifact(sourcesJar) {
@@ -78,7 +76,6 @@ publishing {
 			maven {
 				name = "Siphalor"
 				url = "https://maven.siphalor.de/upload.php"
-				//authentication(BasicAuthentication)
 				credentials {
 					username = siphalorMavenUser
 					password = siphalorMavenPassword
