@@ -4,6 +4,7 @@ import de.siphalor.pushtocraft.PushToCraftManager;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.resource.ReloadableResourceManager;
 import net.minecraft.resource.ResourceReloadListener;
+import net.minecraft.resource.ServerResourceManager;
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,16 +15,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(MinecraftServer.class)
-public class MixinMinecraftServer {
-	@Shadow @Final private ReloadableResourceManager dataManager;
-
+@Mixin(ServerResourceManager.class)
+public class MixinServerResourceManager {
 	@Shadow @Final private RecipeManager recipeManager;
+
+	@Shadow @Final private ReloadableResourceManager resourceManager;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	public void onConstructed(CallbackInfo callbackInfo) {
-		List<ResourceReloadListener> listeners = ((ReloadableResourceManagerImplAccessor) dataManager).getListeners();
-		List<ResourceReloadListener> initialListeners = ((ReloadableResourceManagerImplAccessor) dataManager).getInitialListeners();
+		List<ResourceReloadListener> listeners = ((ReloadableResourceManagerImplAccessor) resourceManager).getListeners();
+		List<ResourceReloadListener> initialListeners = ((ReloadableResourceManagerImplAccessor) resourceManager).getInitialListeners();
 		PushToCraftManager pushToCraftManager = new PushToCraftManager();
 		boolean awaitL = true, awaitIL = true;
 		for (int i = 0, l = Math.min(listeners.size(), initialListeners.size()); i < l; i++) {

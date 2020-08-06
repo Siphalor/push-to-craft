@@ -37,16 +37,19 @@ public class PushToCraftManager extends JsonDataLoader {
 		instance = this;
 	}
 
-	@Override
 	public String getName() {
 		return PushToCraft.MOD_ID;
 	}
 
 	@Override
-	protected void apply(Map<Identifier, JsonObject> resources, ResourceManager manager, Profiler profiler) {
-		for (Map.Entry<Identifier, JsonObject> e : resources.entrySet()) {
+	protected void apply(Map<Identifier, JsonElement> resources, ResourceManager manager, Profiler profiler) {
+		for (Map.Entry<Identifier, JsonElement> e : resources.entrySet()) {
 			Identifier identifier = e.getKey();
-			JsonObject jsonObject = e.getValue();
+			if (!e.getValue().isJsonObject()) {
+				logError(identifier, "must be a JSON Object");
+				continue;
+			}
+			JsonObject jsonObject = e.getValue().getAsJsonObject();
 			if (jsonObject.has("additions")) {
 				JsonElement element = jsonObject.get("additions");
 				if (element.isJsonArray()) {
