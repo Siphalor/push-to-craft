@@ -1,7 +1,7 @@
 # Push To Craft
 
-[![curseforge downloads](http://cf.way2muchnoise.eu/full_push-to-craft_downloads.svg)](https://minecraft.curseforge.com/projects/nbt-crafting)
-[![curseforge mc versions](http://cf.way2muchnoise.eu/versions/push-to-craft.svg)](https://minecraft.curseforge.com/projects/nbt-crafting)
+[![curseforge downloads](http://cf.way2muchnoise.eu/full_push-to-craft_downloads.svg)](https://minecraft.curseforge.com/projects/push-to-craft)
+[![curseforge mc versions](http://cf.way2muchnoise.eu/versions/push-to-craft.svg)](https://minecraft.curseforge.com/projects/push-to-craft)
 
 ![logo](images/icon_big.png?raw=true)
 
