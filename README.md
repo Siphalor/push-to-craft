@@ -59,3 +59,21 @@ This allows you to use emeralds and all kinds of planks as alternatives to diamo
 	}
 }
 ```
+
+## Modders
+If you're a modder and like to use this in your projects you can do so using my maven:
+
+```groovy
+repositories {
+    maven {
+        name "Siphalor's Maven"
+        url "https://maven.siphalor.de"
+    }
+}
+
+dependencies {
+    modCompile "de.siphalor:pushtocraft-1.15:+"
+    // Optionally you can include this mod into your jar
+    include "de.siphalor.pushtocraft-1.15:+"
+}
+```
