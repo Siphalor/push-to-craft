@@ -6,7 +6,7 @@
 ![logo](images/icon_big.png?raw=true)
 
 ## Usage
-This mod adds a new data type called `push to craft`.
+This mod adds a new data type called `push to craft`. Put the files into a `push to craft` directory in your datapack or `data` folder of your mod (beneath the `recipes` or `tags` directories).
 
 A valid json file is built like this:
 - `additions`: _Array_ - Defines all items or tags that you want to add to the targets
