@@ -72,8 +72,8 @@ repositories {
 }
 
 dependencies {
-    modCompile "de.siphalor:pushtocraft-1.15:+"
+    modCompile "de.siphalor:pushtocraft-1.16:+"
     // Optionally you can include this mod into your jar
-    include "de.siphalor:pushtocraft-1.15:+"
+    include "de.siphalor:pushtocraft-1.16:+"
 }
 ```
