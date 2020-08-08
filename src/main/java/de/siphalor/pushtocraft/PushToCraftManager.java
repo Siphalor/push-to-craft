@@ -43,6 +43,10 @@ public class PushToCraftManager extends JsonDataLoader {
 
 	@Override
 	protected void apply(Map<Identifier, JsonElement> resources, ResourceManager manager, Profiler profiler) {
+		exactPushes.clear();
+		namespacePushes.clear();
+		flexiblePushes.clear();
+		wildcardPushes.clear();
 		for (Map.Entry<Identifier, JsonElement> e : resources.entrySet()) {
 			Identifier identifier = e.getKey();
 			if (!e.getValue().isJsonObject()) {
@@ -128,7 +132,7 @@ public class PushToCraftManager extends JsonDataLoader {
 											String id = idElement.getAsString();
 											if (id.charAt(0) == '/' && id.endsWith("/")) {
 												flexiblePushes.add(new Pair<>(
-														Pattern.compile(id.substring(0, id.length() - 1)),
+														Pattern.compile(id.substring(1, id.length() - 1)),
 														entry
 												));
 											} else {
