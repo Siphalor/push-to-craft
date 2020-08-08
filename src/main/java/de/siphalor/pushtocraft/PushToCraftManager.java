@@ -206,8 +206,10 @@ public class PushToCraftManager extends JsonDataLoader {
 			this.recipeSerializers = recipeSerializers;
 		}
 
-		public boolean recipeSerializerMatches(RecipeSerializer<?> recipeType) {
-			return recipeSerializers.contains(recipeType);
+		public boolean recipeSerializerMatches(RecipeSerializer<?> recipeSerializer) {
+			if (recipeSerializers.isEmpty())
+				return true;
+			return recipeSerializers.contains(recipeSerializer);
 		}
 
 		public Collection<String> getAdditions() {
