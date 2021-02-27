@@ -18,4 +18,8 @@ public class Util {
 		}
 		return copy;
 	}
+
+	public static boolean isString(JsonElement jsonElement) {
+		return jsonElement.isJsonPrimitive() && jsonElement.getAsJsonPrimitive().isString();
+	}
 }

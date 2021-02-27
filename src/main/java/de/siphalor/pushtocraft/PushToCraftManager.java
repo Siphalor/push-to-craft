@@ -56,7 +56,7 @@ public class PushToCraftManager extends JsonDataLoader {
 				if (element.isJsonArray()) {
 					LinkedList<String> additions = new LinkedList<>();
 					for (JsonElement additionElement : element.getAsJsonArray()) {
-						if (JsonHelper.isString(additionElement)) {
+						if (Util.isString(additionElement)) {
 							additions.add(additionElement.getAsString());
 						} else {
 							logWarn(identifier, "contains an illegal additions entry of type " + additionElement.getClass().getSimpleName());
@@ -69,13 +69,13 @@ public class PushToCraftManager extends JsonDataLoader {
 						if (element.isJsonArray()) {
 							targets = new LinkedList<>();
 							for (JsonElement targetElement : element.getAsJsonArray()) {
-								if (JsonHelper.isString(targetElement)) {
+								if (Util.isString(targetElement)) {
 									targets.add(targetElement.getAsString());
 								} else {
 									logWarn(identifier, "has item/tag target in array of invalid type " + targetElement.getClass().getSimpleName() + " - should be string");
 								}
 							}
-						} else if (JsonHelper.isString(element)) {
+						} else if (Util.isString(element)) {
 							targets = Collections.singleton(element.getAsString());
 						} else {
 							logError(identifier, "has item/tag target of invalid type " + element.getClass().getSimpleName() + " - should be string or array of strings");
@@ -97,7 +97,7 @@ public class PushToCraftManager extends JsonDataLoader {
 								if (element.isJsonArray()) {
 									recipeSerializers = new LinkedList<>();
 									for (JsonElement recipeSerializerElement : element.getAsJsonArray()) {
-										if (JsonHelper.isString(recipeSerializerElement)) {
+										if (Util.isString(recipeSerializerElement)) {
 											Identifier recipeSerializerId = new Identifier(recipeSerializerElement.getAsString());
 											if (Registry.RECIPE_SERIALIZER.containsId(recipeSerializerId)) {
 												recipeSerializers.add(Registry.RECIPE_SERIALIZER.get(recipeSerializerId));
@@ -125,7 +125,7 @@ public class PushToCraftManager extends JsonDataLoader {
 								if (element.isJsonArray()) {
 									boolean valid = false;
 									for (JsonElement idElement : element.getAsJsonArray()) {
-										if (JsonHelper.isString(idElement)) {
+										if (Util.isString(idElement)) {
 											String id = idElement.getAsString();
 											if (id.charAt(0) == '/' && id.endsWith("/")) {
 												flexiblePushes.add(new Pair<>(
