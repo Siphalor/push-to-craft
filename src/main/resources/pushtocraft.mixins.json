@@ -2,11 +2,11 @@
   "required": true,
   "package": "de.siphalor.pushtocraft.mixin",
   "compatibilityLevel": "JAVA_16",
+  "plugin": "de.siphalor.pushtocraft.mixin.PushToCraftMixinConfig",
   "mixins": [
+    "MixinDataPackContents",
     "MixinIngredient",
-    "MixinServerResourceManager",
-    "MixinRecipeManager",
-    "ReloadableResourceManagerImplAccessor"
+    "MixinRecipeManager"
   ],
   "client": [],
   "server": [],
