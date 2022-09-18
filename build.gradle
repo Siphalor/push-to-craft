@@ -57,6 +57,7 @@ jar {
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
+			artifactId = "${project.archives_base_name}-${project.minecraft_major_version}"
 			from components.java
 			java.withSourcesJar()
 		}
